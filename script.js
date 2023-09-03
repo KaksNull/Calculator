@@ -1,6 +1,67 @@
 let operand1;
 let operand2;
 let operator;
+let result;
+let saved;
+let pressed;
+
+const p = document.querySelector("p");
+const button = document.querySelectorAll("button")
+console.log(button)
+button.forEach(addEventListener("click", (e) => {
+    
+    if (e.target.className === "clear") {
+        p.textContent = "";
+        operand1 = "";
+        operand2 = "";
+        operator = "";
+        result = "";
+    }
+    if (e.target.className === "number") {
+        if (result) {
+            
+            operand1 = result;
+            result = "";
+            operand2 = "";
+            p.textContent = "";
+            
+            
+        }
+        p.textContent += e.target.textContent;
+        if (!operator) {
+            operand1 = p.textContent;
+        } else {
+            operand2 = p.textContent;
+        }
+    }
+    
+    if (e.target.className === "operator") {
+        if (result) {
+            operator = e.target.textContent;
+            return
+        }
+        if (e.target.textContent === operator) {
+            if (operand1 && operand2) {
+            operate(operand1, operator, operand2);
+            }
+        } else {
+            if (operand1 && operand2) {
+                operate(operand1, operator, operand2);
+                operator = e.target.textContent;
+            } else {
+                operator = e.target.textContent;
+                p.textContent = "";
+            }
+            
+            
+        } 
+        
+
+    }
+}))
+
+
+
 
 function operate(operand1, operator, operand2) {
     if (operator === "+") {
@@ -21,32 +82,37 @@ function operate(operand1, operator, operand2) {
 
 function add(...a) {
     
-    let result = a.reduce((operand1, operand2) => operand1 + operand2);
-    console.log(result)
+     result = a.reduce((operand1, operand2) => Number(operand1) + Number(operand2));
+     p.textContent = result;
     return result;
 }
 
 function substract(...a) {
-    let result = a.reduce((operand1, operand2) => operand1 - operand2);
+     result = a.reduce((operand1, operand2) => Number(operand1) - Number(operand2));
+     p.textContent = result;
     return result;
 }
 
 function multiply(...a) {
-    let result = a.reduce((operand1, operand2) => operand1 * operand2);
+     result = a.reduce((operand1, operand2) => Number(operand1) * Number(operand2));
+     p.textContent = result;
     return result;
 }
 
 function divide(...a) {
-    let result = a.reduce((operand1, operand2) => operand1 / operand2);
+     result = a.reduce((operand1, operand2) => Number(operand1) / Number(operand2));
+     p.textContent = result;
     return result;
 }
 
 function exponentiation(...a) {
-    let result = a.reduce((operand1, operand2) => operand1 ** operand2);
+     result = a.reduce((operand1, operand2) => Number(operand1) ** Number(operand2));
+     p.textContent = result;
     return result;
 }
 
 function modulus (...a) {
-    let result = a.reduce((operand1, operand2) => operand1 % operand2);
+     result = a.reduce((operand1, operand2) => Number(operand1) % Number(operand2));
+     p.textContent = result;
     return result;
 }

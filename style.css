@@ -87,13 +87,3 @@ button {
 
 
 }
-
-.operators {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    flex-basis: 30px;
-    justify-content: space-between;
-    align-items: flex-end;
-    
-}
