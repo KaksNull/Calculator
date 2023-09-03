@@ -9,7 +9,11 @@ const p = document.querySelector("p");
 const button = document.querySelectorAll("button")
 console.log(button)
 button.forEach(addEventListener("click", (e) => {
-    
+    if (e.target.className === "back") {
+        p.textContent = p.textContent.slice(0, -1);
+    }
+
+
     if (e.target.className === "clear") {
         p.textContent = "";
         operand1 = "";
