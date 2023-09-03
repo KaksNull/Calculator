@@ -21,6 +21,12 @@ button.forEach(addEventListener("click", (e) => {
         operator = "";
         result = "";
     }
+    if (e.target.className === "equals") {
+        if (operand1 && operand2 && operator) {
+            operate(operand1, operator, operand2);
+        } return
+    }
+    
     if (e.target.className === "number") {
         if (result) {
             
@@ -44,6 +50,7 @@ button.forEach(addEventListener("click", (e) => {
             operator = e.target.textContent;
             return
         }
+        
         if (e.target.textContent === operator) {
             if (operand1 && operand2) {
             operate(operand1, operator, operand2);
